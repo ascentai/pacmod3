@@ -245,6 +245,7 @@ void Pacmod3TxRosMsgHandler::fillSystemRptBool(std::shared_ptr<Pacmod3TxMsg>& pa
   new_msg.output_reported_fault = dc_parser->output_reported_fault;
   new_msg.pacmod_fault = dc_parser->pacmod_fault;
   new_msg.vehicle_fault = dc_parser->vehicle_fault;
+  new_msg.disable_source = dc_parser->disable_source;
 
   new_msg.manual_input = dc_parser->manual_input;
   new_msg.command = dc_parser->command;
@@ -265,6 +266,7 @@ void Pacmod3TxRosMsgHandler::fillSystemRptInt(std::shared_ptr<Pacmod3TxMsg>& par
   new_msg.output_reported_fault = dc_parser->output_reported_fault;
   new_msg.pacmod_fault = dc_parser->pacmod_fault;
   new_msg.vehicle_fault = dc_parser->vehicle_fault;
+  new_msg.disable_source = dc_parser->disable_source;
 
 	new_msg.manual_input = dc_parser->manual_input;
 	new_msg.command = dc_parser->command;
@@ -285,6 +287,7 @@ void Pacmod3TxRosMsgHandler::fillSystemRptFloat(std::shared_ptr<Pacmod3TxMsg>& p
   new_msg.output_reported_fault = dc_parser->output_reported_fault;
   new_msg.pacmod_fault = dc_parser->pacmod_fault;
   new_msg.vehicle_fault = dc_parser->vehicle_fault;
+  new_msg.disable_source = dc_parser->disable_source;
 
   new_msg.manual_input = dc_parser->manual_input;
   new_msg.command = dc_parser->command;

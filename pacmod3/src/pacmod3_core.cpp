@@ -226,7 +226,8 @@ SystemRptMsg::SystemRptMsg() :
   input_output_fault(false),
   output_reported_fault(false),
   pacmod_fault(false),
-  vehicle_fault(false)
+  vehicle_fault(false),
+  disable_source(INITIAL_DISABLE)
 {}
 
 SystemRptBoolMsg::SystemRptBoolMsg() :
@@ -274,10 +275,11 @@ void SystemRptBoolMsg::parse(uint8_t *in)
   output_reported_fault = ((in[0] & 0x10) > 0);
   pacmod_fault = ((in[0] & 0x20) > 0);
   vehicle_fault = ((in[0] & 0x40) > 0);
+  disable_source = in[1];
 
-  manual_input = ((in[1] & 0x01) > 0);
-  command = ((in[2] & 0x01) > 0);
-  output = ((in[3] & 0x01) > 0);
+  manual_input = ((in[2] & 0x01) > 0);
+  command = ((in[3] & 0x01) > 0);
+  output = ((in[4] & 0x01) > 0);
 }
 
 void SystemRptIntMsg::parse(uint8_t *in)
@@ -289,10 +291,11 @@ void SystemRptIntMsg::parse(uint8_t *in)
   output_reported_fault = ((in[0] & 0x10) > 0);
   pacmod_fault = ((in[0] & 0x20) > 0);
   vehicle_fault = ((in[0] & 0x40) > 0);
+  disable_source = in[1];
 
-  manual_input = in[1];
-  command = in[2];
-  output = in[3];
+  manual_input = in[2];
+  command = in[3];
+  output = in[4];
 }
 
 void SystemRptFloatMsg::parse(uint8_t *in)
@@ -304,16 +307,17 @@ void SystemRptFloatMsg::parse(uint8_t *in)
   output_reported_fault = ((in[0] & 0x10) > 0);
   pacmod_fault = ((in[0] & 0x20) > 0);
   vehicle_fault = ((in[0] & 0x40) > 0);
+  disable_source = in[1];
 
   int16_t temp;
 
-  temp = ((int16_t)in[1] << 8) | in[2];
+  temp = ((int16_t)in[2] << 8) | in[3];
   manual_input = (double)(temp / 1000.0);
 
-  temp = ((int16_t)in[3] << 8) | in[4];
+  temp = ((int16_t)in[4] << 8) | in[5];
   command = (double)(temp / 1000.0);
 
-  temp = ((int16_t)in[5] << 8) | in[6];
+  temp = ((int16_t)in[6] << 8) | in[7];
   output = (double)(temp / 1000.0);
 }
 

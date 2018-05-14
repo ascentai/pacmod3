@@ -47,6 +47,22 @@ namespace PACMod3
     DIM_LEVEL_MAX = 12
   };
 
+  enum DisableSource
+  {
+    INITIAL_DISABLE = 0,
+    USER_REQUEST = 1,
+    SYSTEM_OVERRIDE = 2,
+    COMMAND_TIMEOUT = 3,
+    VEHICLE_CAN_TIMEOUT = 4,
+    GLOBAL_REPORT_TIMEOUT = 5,
+    SUBSYSTEM_REPORT_TIMEOUT = 6,
+    SYSTEM_FAULT = 7,
+    VEHICLE_FAULT = 8,
+    OTHER_SYSTEM_OVERRIDDEN = 9,
+    OTHER_SYSTEM_TIMEOUT = 10,
+    OTHER_SYSTEM_FAULT = 11
+  };
+
   class Pacmod3TxMsg
   {
     public:
@@ -67,6 +83,7 @@ namespace PACMod3
       bool output_reported_fault;
       bool pacmod_fault;
       bool vehicle_fault;
+      uint8_t disable_source;
   };
 
   class SystemRptBoolMsg :
