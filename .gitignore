@@ -8,3 +8,7 @@ polysync-viewer.config
 *.user
 *~
 .idea/
+
+.cproject
+.project
+.settings/
